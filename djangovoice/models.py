@@ -57,6 +57,8 @@ class Feedback(models.Model):
     class Meta:
         verbose_name = _('feedback')
         verbose_name_plural = _('feedbacks')
+        ordering = ('-created',)
+        get_latest_by = 'created'
 
     def save(self):
         try:

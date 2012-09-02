@@ -26,7 +26,7 @@ def detail(request, object_id):
 
 
 def list(request, list=False, type=False, status=False):
-    feedback = Feedback.objects.all().order_by('-created')
+    feedback = Feedback.objects.all()
     
     if not list:
         list = "open"
