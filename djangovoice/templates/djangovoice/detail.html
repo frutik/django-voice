@@ -17,7 +17,6 @@
 
 {% block content %}
 
-{% load gravatar %}
 {% load voting_tags %}
 {% score_for_object feedback as score %}
 {% load comments %}
@@ -46,7 +45,16 @@
       
 <h1 id="feedback-detail-heading"><span class="feedback-type feedback-type-{{ feedback.type.slug }}"> {{ feedback.type.title }}</span>{{ feedback.title }} <span class="feedback-status feedback-status-{{ feedback.status.slug }}">{{ feedback.status.title }}</span></h1>
 
-<p><span class="feedback-user">{% if feedback.user %}{% trans 'Submitted by' %}: <a href="{{ feedback.user.get_absolute_url }}" class="avatar" title="View profile">{% gravatar feedback.user.username 15 %}</a> <a href="{{ feedback.user.get_absolute_url }}" title="View profile">{{ feedback.user }}</a>{% else %}{% trans 'Submitted anonymously' %}{% endif %}</span> <span class="feedback-date">{% blocktrans with feedback.created|date as date %}on {{ date }}{% endblocktrans %}</span></p>
+<p>
+    <span class="feedback-user">
+        {% if feedback.user %}
+        Submitted by: {{ feedback.user.email }}
+        {% else %}
+        Submitted anonymously
+        {% endif %}
+    </span>
+    <span class="feedback-date">{% blocktrans with feedback.created|date as date %}on {{ date }}{% endblocktrans %}</span>
+</p>
 
 
 <div class="clear"></div>
@@ -67,7 +75,7 @@
             <a name="{{ message.id }}"></a>
             <div class="content">
                 <div class="avatar">
-                    {% gravatar comment.user.username 40 %}
+                    FIXME
                 </div>
                 {% if comment.user.is_staff %}
                     <div class="staff">
