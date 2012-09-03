@@ -9,15 +9,15 @@
 <h1>{% trans 'Submit feedback' %}</h1>
 
 <form action="{% url djangovoice_submit %}" method="post">
-<table>
-{% for field in form %}
-    {% include "djangovoice/includes/fields.html" %}
-{% endfor %}
+{% csrf_token %}
+  <table>
+    {% for field in form %}
+      {% include "djangovoice/includes/fields.html" %}
+    {% endfor %}
     <tr>
-        <td></td>
-        <td><br /><input type="submit" value="{% trans 'Submit' %}" /></td>
+      <td></td>
+      <td><br /><input type="submit" value="{% trans 'Submit' %}" /></td>
     </tr>
-
-</table>
+  </table>
 </form>
 {% endblock %}
